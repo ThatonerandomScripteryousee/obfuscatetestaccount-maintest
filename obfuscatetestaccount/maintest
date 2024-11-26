@@ -1,1 +1,114 @@
-local a=Instance.new("ScreenGui")local b=Instance.new("Frame")local c=Instance.new("TextLabel")local d=Instance.new("TextButton")local e=Instance.new("TextButton")a.Parent=game:GetService("CoreGui")b.Size=UDim2.new(0,200,0,150)b.Position=UDim2.new(0.5,-100,0.5,-75)b.BackgroundColor3=Color3.fromRGB(255,255,255)b.Active=true;b.Draggable=true;b.Parent=a;c.Size=UDim2.new(0,200,0,30)c.Position=UDim2.new(0,0,0,0)c.BackgroundTransparency=1;c.Text="Made by USERX sia51"c.TextColor3=Color3.fromRGB(0,0,0)c.Font=Enum.Font.SourceSans;c.TextSize=18;c.Parent=b;d.Size=UDim2.new(0,180,0,40)d.Position=UDim2.new(0,10,0,40)d.Text="SupplyBoxGet"d.Parent=b;e.Size=UDim2.new(0,180,0,40)e.Position=UDim2.new(0,10,0,90)e.Text="SupplyBallGet"e.Parent=b;local f;local function g(h)local i=game.Players.LocalPlayer.Character;if i and #h>0 then local j=i:WaitForChild("HumanoidRootPart")f=j.Position;local k=h[math.random(1,#h)]j.CFrame=k.CFrame;end end;local function l()local i=game.Players.LocalPlayer.Character;if i and f then local j=i:WaitForChild("HumanoidRootPart")j.CFrame=CFrame.new(f);end end;local function m()game.StarterGui:SetCore("SendNotification",{Title="Error",Text="There is no Supply.",Duration=3})end;local function n()local o=20;local p=game.Players.LocalPlayer;local i=p.Character or p.CharacterAdded:Wait()local q=i.HumanoidRootPart.Position;for _,r in pairs(workspace:GetDescendants())do if r:IsA("ProximityPrompt")then local s=r.Parent;if s:IsA("BasePart")then local t=s.Position;if(q-t).Magnitude<=o then fireproximityprompt(r);end end end end end;local function u()local v=workspace:GetChildren()local w={}for _,x in ipairs(v)do if x.Name=="SupplyBox"then table.insert(w,x);end end;if#w>0 then g(w);wait(0.2)n();wait(0.3)l();else m();end end;local function y()local z=workspace:GetChildren()local A={}for _,x in ipairs(z)do if x.Name=="SupplyBall"then table.insert(A,x);end end;if#A>0 then local B=A[math.random(1,#A)]B.Anchored=true;g(A);wait(0.1)n();wait(0.3)l();B.Anchored=false;else m();end end;d.MouseButton1Click:Connect(function()u();end)e.MouseButton1Click:Connect(function()y();end)
+local a = Instance.new("ScreenGui")
+local b = Instance.new("Frame")
+local c = Instance.new("TextLabel")
+local d = Instance.new("TextButton")
+local e = Instance.new("TextButton")
+a.Parent = game:GetService("CoreGui")
+b.Size = UDim2.new(0, 200, 0, 150)
+b.Position = UDim2.new(0.5, -100, 0.5, -75)
+b.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+b.Active = true
+b.Draggable = true
+b.Parent = a
+c.Size = UDim2.new(0, 200, 0, 30)
+c.Position = UDim2.new(0, 0, 0, 0)
+c.BackgroundTransparency = 1
+c.Text = "Made by USERX sia51"
+c.TextColor3 = Color3.fromRGB(0, 0, 0)
+c.Font = Enum.Font.SourceSans
+c.TextSize = 18
+c.Parent = b
+d.Size = UDim2.new(0, 180, 0, 40)
+d.Position = UDim2.new(0, 10, 0, 40)
+d.Text = "SupplyBoxGet"
+d.Parent = b
+e.Size = UDim2.new(0, 180, 0, 40)
+e.Position = UDim2.new(0, 10, 0, 90)
+e.Text = "SupplyBallGet"
+e.Parent = b
+local f
+local function g(h)
+    local i = game.Players.LocalPlayer.Character
+    if i and #h > 0 then
+        local j = i:WaitForChild("HumanoidRootPart")
+        f = j.Position
+        local k = h[math.random(1, #h)]
+        j.CFrame = k.CFrame
+    end
+end
+local function l()
+    local i = game.Players.LocalPlayer.Character
+    if i and f then
+        local j = i:WaitForChild("HumanoidRootPart")
+        j.CFrame = CFrame.new(f)
+    end
+end
+local function m()
+    game.StarterGui:SetCore("SendNotification", {Title = "Error", Text = "There is no Supply.", Duration = 3})
+end
+local function n()
+    local o = 20
+    local p = game.Players.LocalPlayer
+    local i = p.Character or p.CharacterAdded:Wait()
+    local q = i.HumanoidRootPart.Position
+    for _, r in pairs(workspace:GetDescendants()) do
+        if r:IsA("ProximityPrompt") then
+            local s = r.Parent
+            if s:IsA("BasePart") then
+                local t = s.Position
+                if (q - t).Magnitude <= o then
+                    fireproximityprompt(r)
+                end
+            end
+        end
+    end
+end
+local function u()
+    local v = workspace:GetChildren()
+    local w = {}
+    for _, x in ipairs(v) do
+        if x.Name == "SupplyBox" then
+            table.insert(w, x)
+        end
+    end
+    if #w > 0 then
+        g(w)
+        wait(0.2)
+        n()
+        wait(0.3)
+        l()
+    else
+        m()
+    end
+end
+local function y()
+    local z = workspace:GetChildren()
+    local A = {}
+    for _, x in ipairs(z) do
+        if x.Name == "SupplyBall" then
+            table.insert(A, x)
+        end
+    end
+    if #A > 0 then
+        local B = A[math.random(1, #A)]
+        B.Anchored = true
+        g(A)
+        wait(0.1)
+        n()
+        wait(0.3)
+        l()
+        B.Anchored = false
+    else
+        m()
+    end
+end
+d.MouseButton1Click:Connect(
+    function()
+        u()
+    end
+)
+e.MouseButton1Click:Connect(
+    function()
+        y()
+    end
+)
